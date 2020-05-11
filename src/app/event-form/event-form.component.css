@@ -1,0 +1,19 @@
+button.calendar,button.calendar:active{
+    width: 2.75rem;
+    background-image: url('/assets/calender-icon.png');
+    background-repeat: no-repeat;
+    background-size: 23px;
+    background-position: 50%;
+}
+.ng-valid[required], .ng-valid.required  {
+    border-left: 3px solid #42A948; /* green */
+  }
+  
+  .ng-invalid:not(form)  {
+    border-left: 3px solid #a94442; /* red */
+  }
+  @media (min-width: 768px){
+    .eventForm{
+    width: 50%;
+  }
+  }  

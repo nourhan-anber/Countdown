@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +7,21 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Countdown';
+  event = JSON.parse(localStorage.getItem('Event'));
+
+
+  ngOnInit(){
+    if (!Notification) {
+      alert('Desktop notifications not available in your browser. Try Chromium.');
+      return;
+     }
+    
+     if (Notification.permission !== 'granted')
+      Notification.requestPermission();
+  }
+
+  saveEvent(e){
+    this.event = e;
+    localStorage.setItem("Event", JSON.stringify(e));
+  }
 }

@@ -1,0 +1,30 @@
+<div class="eventForm offset-md-3 offset-lg-3 offset-sm-3 offset-xs-3">
+   <div class="title"><h2>Add New Event</h2></div> 
+   <div class="form">
+       <form  novalidate (ngSubmit)="onSubmit()">
+           <div>          
+              <input type="text" [formControl]="eventForm.controls.title" name="title" placeholder="Type your event's title" name="title" class="form-control" required>
+             <div *ngIf="eventForm.controls && eventForm.controls.title && eventForm.controls.title.invalid && (eventForm.controls.title.dirty || eventForm.controls.title.touched)" class="alert alert-danger">
+                  <div *ngIf="eventForm.controls.title.errors.required">Title is required.</div>
+              </div>
+           </div>
+            <div class="input-group">
+                <input class="form-control" placeholder="yyyy-mm-dd" [formControl]="eventForm.controls.date" name="date" ngbDatepicker #d="ngbDatepicker" [minDate] = "this.calendar.getToday()">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+                </div>
+                <div *ngIf="eventForm.controls && eventForm.controls.date && eventForm.controls.date.invalid && (eventForm.controls.date.dirty || eventForm.controls.date.touched)" class="alert alert-danger">
+                    <div *ngIf="eventForm.controls.date.errors.required">Date is required.</div>
+                </div>
+              </div>
+              <ngb-timepicker [formControl]="timeControl" name="time" required></ngb-timepicker>
+              <div *ngIf="timeControl.invalid && eventForm.controls.title.touched" class="alert alert-danger">
+                <div *ngIf="timeControl.errors.required">Time is required.</div>                
+                <div *ngIf="timeControl.errors.timeChecked">Time can't be on the past.</div>
+            </div>
+
+                <hr>
+           <div><button type="submit" class="btn btn-lg btn-primary">Start</button></div>
+       </form>
+   </div>
+</div>
